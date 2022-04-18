@@ -19,8 +19,8 @@ jobs:
         with:
           java-version: 1.17
       - name: Maven Test
-        run: mvn -B clean test
+        run: mvn -q -B clean test
       - name: Maven Package
-        run: mvn -B clean package -DskipTests
+        run: mvn -q -B clean package -DskipTests
       - name: Maven Verify
-        run: mvn -B clean verify
+        run: mvn -q -B clean verify

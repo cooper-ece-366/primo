@@ -17,10 +17,12 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 17.0.2
+      - name: Maven Test
+        run: mvn -q -B clean test
       - name: Maven Package
-        run: mvn -B clean package -DskipTests
+        run: mvn -q -B clean package -DskipTests
       - name: Maven Verify
-        run: mvn -B clean verify -Pintegration-test
+        run: mvn -q -B clean verify -Pintegration-test
 
   sonar:
     name: Test - SonarCloud Scan
@@ -33,7 +35,7 @@ jobs:
         with:
           java-version: 17.0.2
       - name: SonarCloud Scan
-        run: mvn -B clean verify -Psonar -Dsonar.login=${{ secrets.SONAR_LOGIN }}
+        run: mvn -q -B clean verify -Psonar -Dsonar.login=${{ secrets.SONAR_LOGIN }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
